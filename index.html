@@ -474,6 +474,68 @@ table.cmp td:last-child{color:var(--ink)}
 .contact .way .row a{color:#fff;text-decoration:none;font-variant-numeric:tabular-nums}
 @media (max-width:620px){.contact{grid-template-columns:minmax(0,1fr)}}
 
+/* three thoughts */
+.thoughts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+a.thought{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;transition:box-shadow .15s}
+a.thought:hover{box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.thought .pn{font:300 48px/1 var(--display);color:var(--accent)}
+.thought h3{font:400 23px/1.22 var(--display);text-wrap:balance}
+.thought p,.thought li{color:var(--ink-2);font-size:15.5px}
+.thought .more-link{margin-top:auto;padding-top:6px;font:600 12px/1.3 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+@media (max-width:900px){.thoughts{grid-template-columns:minmax(0,1fr)}}
+.limit{margin-top:18px;padding:22px 24px}
+.limit b{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+.limit p{font-size:17px;line-height:1.55;max-width:72ch}
+
+/* autonomy matrix */
+table.mx{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;background:var(--surface);border:1px solid var(--line)}
+table.mx th,table.mx td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+table.mx th{font:600 11px/1.3 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);background:var(--surface-2)}
+table.mx th.c,table.mx td.c{text-align:center;width:14%}
+table.mx td.k{font-weight:600;color:var(--ink)}
+table.mx td.k small{display:block;margin-top:4px;font:600 10.5px/1.3 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--stop)}
+table.mx td.ex{color:var(--ink-2)}
+table.mx tr:last-child td{border-bottom:0}
+.mxb{width:46px;height:34px;border:1px dashed var(--line-strong);background:transparent;border-radius:2px;cursor:pointer;color:var(--mute);font:700 15px/1 var(--body)}
+.mxb:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.mxb[aria-pressed="true"]{border-style:solid;cursor:default}
+.mxb.ok[aria-pressed="true"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.mxb.warn[aria-pressed="true"]{background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
+.mxb.stop[aria-pressed="true"]{background:var(--stop-bg);border-color:var(--stop);color:var(--stop)}
+.mxb:disabled{cursor:not-allowed;opacity:.35}
+.mx-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px}
+.mx-actions .hint{font-size:13.5px;color:var(--mute)}
+.mx-policy{margin-top:18px}
+.mx-rules{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mx-rules .card{display:grid;gap:10px;align-content:start}
+.mx-rules .card p{color:var(--ink-2);font-size:15px}
+.mx-host{margin-top:18px}
+@media (max-width:900px){.mx-rules{grid-template-columns:minmax(0,1fr)}}
+
+/* application levels */
+.levels{display:grid;gap:36px}
+.level{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}
+.lv-head{display:grid;gap:8px}
+.lv-head .pn{font:300 44px/1 var(--display);color:var(--accent)}
+.lv-head h3{font:400 22px/1.2 var(--display)}
+.level .tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:900px){.level{grid-template-columns:minmax(0,1fr);gap:14px}.lv-head{position:static}}
+@media (max-width:560px){.level .tgrid{grid-template-columns:minmax(0,1fr)}}
+.final .next{grid-column:1/-1}
+
+.mx-policy pre{max-height:none}
+@media (max-width:620px){
+  table.mx{min-width:0;border:0;background:transparent}
+  table.mx thead{display:none}
+  table.mx tbody{display:grid;gap:10px}
+  table.mx tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+  table.mx td,table.mx tr:last-child td{border:0;padding:0}
+  table.mx td.k,table.mx td.ex{grid-column:1/-1}
+  table.mx td.ex{font-size:13.5px;margin-bottom:6px}
+  table.mx td.c{width:auto;display:grid;justify-items:center;gap:6px}
+  table.mx td.c::before{content:attr(data-label);font:600 10px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
+}
+
 footer{background:var(--hero-0);color:#b8c5ff;padding-block:40px;font-size:13.5px}
 footer .wrap{display:grid;gap:10px}
 footer a{color:#dfe6ff}
@@ -490,9 +552,9 @@ footer a{color:#dfe6ff}
     </a>
     <nav class="nav" aria-label="Разделы">
       <a href="#models">Модели</a>
+      <a href="#autonomy">Автономия</a>
       <a href="#news">Новости</a>
       <a href="#formula">Формула</a>
-      <a href="#autonomy">Автономия</a>
       <a href="#ladder">Лестница</a>
       <a href="#pitfalls">Риски</a>
       <a href="#practicum">Практикум</a>
@@ -520,7 +582,7 @@ footer a{color:#dfe6ff}
         <div class="term"><b>Коннекторы</b><span>руки</span></div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-light" href="#overview">Обзор урока</a>
+        <a class="btn btn-light" href="#overview">Три мысли за три минуты</a>
         <a class="btn btn-ghost" href="#models">Экскурс в мир моделей</a>
       </div>
     </div>
@@ -530,10 +592,38 @@ footer a{color:#dfe6ff}
 <section class="block" id="overview">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Обзор</p>
-      <h2>Урок из двух частей</h2>
-      <p>ИИ перешёл от «отвечает» к «делает». Технология уже работает, а проекты чаще всего проваливаются по управленческим причинам. Поэтому разбираемся не в кнопках, а в том, как это устроено и чем здесь можно управлять.</p>
+      <p class="eyebrow">Коротко</p>
+      <h2>Три мысли за три минуты</h2>
     </div>
+    <div class="thoughts">
+      <a class="card thought" href="#chat-vs-agent">
+        <span class="pn">1</span>
+        <h3>Агенты — это уже цифровые исполнители, а не чат-боты</h3>
+        <p>Агент сам идёт в почту, документы и системы и доводит задачу до результата, а не просто отвечает на вопрос.</p>
+        <span class="more-link">Чем агент отличается от чата →</span>
+      </a>
+      <a class="card thought" href="#autonomy">
+        <span class="pn">2</span>
+        <h3>Самое ценное и самое рискованное — права агента, а не качество модели</h3>
+        <p>Модели у всех сильные и быстро дешевеют. Пользу и ущерб определяет то, что агенту разрешено читать, менять и отправлять.</p>
+        <span class="more-link">Матрица автономии →</span>
+      </a>
+      <a class="card thought" href="#transfer">
+        <span class="pn">3</span>
+        <h3>Для холдинга это три уровня</h3>
+        <ul class="clean">
+          <li>личная продуктивность руководителя</li>
+          <li>функции управляющей компании: юристы, IR, закупки, HR</li>
+          <li>портфельные компании</li>
+        </ul>
+        <span class="more-link">Примеры по уровням →</span>
+      </a>
+    </div>
+    <div class="callout key limit" id="limit">
+      <b>Главное ограничение</b>
+      <p>Claude и Cowork официально недоступны в России, а у холдинга есть требования 152-ФЗ и ИБ. Поэтому демо в уроке сделаны на публичных данных. Для работы с чувствительными данными и коннекторами мы делаем MWS AI Corporate Cowork. В октябре он появится для АФК «Система», и на нём будут следующее демо и урок.</p>
+    </div>
+    <p class="label ov-label">Дальше — урок из двух частей</p>
     <div class="ov">
       <a class="card ovp" href="#models">
         <span class="pn">1</span>
@@ -544,16 +634,16 @@ footer a{color:#dfe6ff}
       <a class="card ovp" href="#news">
         <span class="pn">2</span>
         <h3>Агенты</h3>
-        <p>Что делает агента агентом и сколько свободы ему дать. Шесть агентов — от сводки по портфелю до команды, которая проверяет сама себя. Риски, практикум и карточка своего агента.</p>
+        <p>Что делает агента агентом. Шесть агентов — от сводки по портфелю до команды, которая проверяет сама себя. Данные, практикум и карточка своего агента.</p>
         <p class="idea">Агент не отвечает, а делает: сам идёт в ваши системы и доводит задачу до результата.</p>
       </a>
     </div>
     <p class="label ov-label">Что будет на выходе</p>
     <div class="outcomes">
       <div><b>1</b>Понимание, из чего собран ИИ-продукт, и четыре вопроса к любой ИИ-инициативе</div>
-      <div><b>2</b>Правило «какие данные — в какой контур»</div>
-      <div><b>3</b>Два личных агента, которые берём в работу</div>
-      <div><b>4</b>Карточка первого агента и три решения</div>
+      <div><b>2</b>Матрица допустимой автономии — черновик политики для группы</div>
+      <div><b>3</b>Правило «какие данные — в какой контур»</div>
+      <div><b>4</b>Два личных агента, карточка первого агента и три решения</div>
     </div>
   </div>
 </section>
@@ -835,11 +925,57 @@ footer a{color:#dfe6ff}
       <div class="host-note"><span class="label">Для ведущего</span>Демо: один и тот же вопрос про портфельную компанию — сначала в чате без инструментов, потом поручением агенту с поиском и документом. Покажите на экране, как агент ходит по шагам.</div>
     </div>
 
-    <p class="thesis bridge">Дальше — вторая часть: агенты. Из пяти слоёв агенту обязательно нужны три: модель думает, коннекторы действуют, обвязка крутит цикл. Это и есть формула агента.</p>
+    <p class="thesis bridge">Из пяти слоёв агенту обязательно нужны три: модель думает, коннекторы действуют, обвязка крутит цикл. Раз у агента есть руки, первый вопрос — что ему разрешено делать. Об этом следующий блок.</p>
   </div>
 </section>
 
-<section class="block" id="news">
+<section class="block" id="autonomy">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Права агента</p>
+      <h2>Матрица допустимой автономии</h2>
+      <p>Шкала автономии превращается в политику: какие классы действий агенты в холдинге выполняют сами, что — только после утверждения человеком, а что запрещено всегда. Нажмите на пустую ячейку, чтобы перенести класс действий в другую колонку.</p>
+    </div>
+    <div class="tablewrap"><table class="mx">
+      <thead><tr><th>Класс действий</th><th>Пример в холдинге</th><th class="c">Агент сам</th><th class="c">С утверждением</th><th class="c">Никогда</th></tr></thead>
+      <tbody id="mx-body"></tbody>
+    </table></div>
+    <div class="mx-actions">
+      <button class="btn btn-quiet btn-sm" type="button" id="mx-reset">Вернуть рекомендацию</button>
+      <span class="hint">Платежи, отправка во внешний мир и подписание закреплены в колонке «Никогда».</span>
+    </div>
+    <div class="prompt mx-policy"><div class="prompt-head"><span>Политика текстом</span><button class="copy" type="button" data-copy="policy">Скопировать</button></div><pre data-prompt="policy"></pre></div>
+    <div class="mx-rules">
+      <div class="card"><b>Колонку выбирают по цене ошибки</b><p>Не по тому, насколько умён агент. Ошибка в черновике стоит минуты на правку, ошибка в отправленном письме или платеже — денег и репутации.</p></div>
+      <div class="card"><b>Решение закрепляют правами, а не промптом</b><p>Запрет в инструкции — просьба, запрет в настройках — гарантия. Три колонки матрицы — это три режима прав у каждого действия коннектора:</p>
+        <div class="perm">
+          <div class="perm-row"><span class="pill ok"><i>✓</i> Always allow</span><span>агент сам</span></div>
+          <div class="perm-row"><span class="pill warn"><i>?</i> Needs approval</span><span>с утверждением</span></div>
+          <div class="perm-row"><span class="pill stop"><i>✕</i> Blocked</span><span>никогда</span></div>
+        </div>
+      </div>
+      <div class="card"><b>Доверие расширяют по метрике</b><p>Класс действий переезжает из «с утверждением» в «агент сам», только когда две недели подряд девять из десяти результатов принимаются без правок. Матрицу пересматривают раз в квартал.</p></div>
+    </div>
+    <div class="host-note mx-host"><span class="label">Для ведущего</span>Пройдите матрицу вместе с участником: какие строки участник сдвинул бы и почему? Результат — черновик распоряжения по группе, его можно скопировать кнопкой выше.</div>
+    <details class="more">
+      <summary>Пять уровней автономии — чтобы описать отдельного агента</summary>
+      <p class="muted" style="margin:4px 0 16px;font-size:15px">Brinnae Bent (Duke, 2025) описывает агента по пяти осям, одна из них — автономия. На лестнице агентов у каждой ступени указан уровень по этой шкале.</p>
+      <div class="card aut-card">
+        <div class="scale" id="aut-scale" role="radiogroup" aria-label="Уровень автономии"></div>
+        <div class="aut-out" aria-live="polite">
+          <h3 id="aut-title"></h3>
+          <dl class="kv">
+            <dt>Пример</dt><dd id="aut-ex"></dd>
+            <dt>В Claude</dt><dd id="aut-claude"></dd>
+            <dt>На лестнице</dt><dd id="aut-rungs"></dd>
+          </dl>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="block alt" id="news">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Часть 2 · Агенты</p>
@@ -863,7 +999,7 @@ footer a{color:#dfe6ff}
   </div>
 </section>
 
-<section class="block alt" id="formula">
+<section class="block" id="formula">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Что такое агент</p>
@@ -936,42 +1072,6 @@ footer a{color:#dfe6ff}
   </div>
 </section>
 
-<section class="block" id="autonomy">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Ограничения — часть обвязки</p>
-      <h2>Автономия: сколько свободы дать агенту</h2>
-      <p>Brinnae Bent (Duke, 2025) предлагает описывать агента по пяти осям, одна из них — автономия. Выберите уровень, чтобы увидеть, как он выглядит в настройках Claude и где встречается на нашей лестнице.</p>
-    </div>
-    <div class="aut">
-      <div class="card">
-        <div class="scale" id="aut-scale" role="radiogroup" aria-label="Уровень автономии"></div>
-        <div class="aut-out" aria-live="polite">
-          <h3 id="aut-title"></h3>
-          <dl class="kv">
-            <dt>Пример</dt><dd id="aut-ex"></dd>
-            <dt>В Claude</dt><dd id="aut-claude"></dd>
-            <dt>На лестнице</dt><dd id="aut-rungs"></dd>
-          </dl>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="callout key">
-          <b>Уровень автономии выбирают по цене ошибки, а не по уму агента.</b>
-          <p>Исследователю — 3: ошибка = неточный отчёт, вы его проверите. Секретарю — 2: ошибка = неверное письмо от вашего имени, его не вернуть.</p>
-        </div>
-        <div class="card perm">
-          <span class="label">Автономию задают не агенту целиком, а каждому действию — в правах коннектора</span>
-          <div class="perm-row"><span class="pill ok"><i>✓</i> Always allow</span><span>агент делает сам</span></div>
-          <div class="perm-row"><span class="pill warn"><i>?</i> Needs approval</span><span>сначала спрашивает вас</span></div>
-          <div class="perm-row"><span class="pill stop"><i>✕</i> Blocked</span><span>не может вообще</span></div>
-        </div>
-        <div class="callout"><b>Запрет в промпте — просьба. Запрет в правах — гарантия.</b></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="block alt" id="ladder">
   <div class="wrap">
     <div class="sec-head">
@@ -1012,7 +1112,7 @@ footer a{color:#dfe6ff}
     <div class="sec-head">
       <p class="eyebrow">Делаем вместе</p>
       <h2>Практикум по шагам</h2>
-      <p>Ведущий показывает каждого агента на живом примере, а вы пробуете один-два шага сами: запускаете исследователя по компании перед сделкой и отдаёте свой тезис критику. Остальные шаги — для помощника или команды, которые будут настраивать агентов. Промпты собираются из полей над ними: поменяйте компанию, темы или формат, и текст обновится. Отметки шагов сохраняются в этом браузере.</p>
+      <p>Ведущий показывает каждого агента на живом примере, а вы пробуете один-два шага сами: запускаете исследователя по компании перед сделкой и отдаёте свой тезис критику. Остальные шаги — для помощника или команды, которые будут настраивать агентов. Демо — на публичных данных; почему — в блоке <a href="#limit">«Главное ограничение»</a>. Промпты собираются из полей над ними: поменяйте компанию, темы или формат, и текст обновится. Отметки шагов сохраняются в этом браузере.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Ступени практикума" id="tabs">
       <button class="tab" role="tab" id="tab-0" aria-controls="p0" aria-selected="true" data-tab="0"><span class="tn">0 · Подготовка</span><span class="tc" data-count="0"></span></button>
@@ -1281,13 +1381,32 @@ footer a{color:#dfe6ff}
     <div class="sec-head">
       <p class="eyebrow">Перенос паттерна</p>
       <h2>Куда это применить у себя</h2>
-      <p>Для личных задач проще всего — Claude. Для компаний группы — MWS AI Agents Platform: там агента можно собрать на модели, которая подходит под данные. Главное — заранее решить, какие доступы выдать и какие права на действия.</p>
+      <p>Три уровня — те же, что в начале урока. Каждый пример разложен по формуле агента: что решает модель, какие нужны инструменты, как устроена петля и в каком контуре работать.</p>
     </div>
-    <div class="tgrid">
-      <div class="card"><h3>Поручения по группе: кто, что и к какому сроку</h3><dl><dt>LLM</dt><dd>извлекает поручения, владельцев и сроки, замечает просрочки</dd><dt>Tools</dt><dd>протоколы совещаний, почта, календарь</dd><dt>Loop</dt><dd>каждый день; просрочки — в утренний бриф</dd><dt>Контур</dt><dd>внутренние документы — свой контур или private cloud</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="3">Ступень 3</button><button class="rchip" type="button" data-go="4">Ступень 4</button></div></div>
-      <div class="card"><h3>Материалы к совету директоров портфельной компании</h3><dl><dt>LLM</dt><dd>сверяет с прошлым периодом и бюджетом, находит, где цифры не бьются и что менеджмент не объяснил, готовит пять вопросов</dd><dt>Tools</dt><dd>читает материалы на 150–300 страниц и прошлые протоколы</dd><dt>Loop</dt><dd>раздел за разделом, компания за компанией</dd><dt>Контур</dt><dd>непубличная отчётность, а у публичных компаний — инсайд: только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="1">Ступень 1</button><button class="rchip" type="button" data-go="5">Ступень 5</button><button class="rchip" type="button" data-go="6">Ступень 6</button></div></div>
-      <div class="card"><h3>Мониторинг: рынок, ставка, регуляторика, портфель</h3><dl><dt>LLM</dt><dd>отбирает то, что меняет картину для группы</dd><dt>Tools</dt><dd>поиск, сайты регуляторов и компаний, деловые СМИ</dd><dt>Loop</dt><dd>по расписанию: раз в день или в неделю</dd><dt>Контур</dt><dd>публичные данные — облачная модель подходит</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="2">Ступень 2</button><button class="rchip" type="button" data-go="4">Ступень 4</button></div></div>
-      <div class="card"><h3>Red team на решение</h3><dl><dt>LLM</dt><dd>ищет слабые места, скрытые допущения и данные, которые опровергли бы тезис</dd><dt>Tools</dt><dd>читает меморандум или стратегию, ищет данные</dd><dt>Loop</dt><dd>аргумент → контраргумент → что проверить</dd><dt>Контур</dt><dd>зависит от документа; с инсайдом — только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="6">Ступень 6</button></div></div>
+    <div class="levels">
+      <div class="level">
+        <div class="lv-head"><span class="pn">1</span><h3>Личная продуктивность руководителя</h3></div>
+        <div class="tgrid">
+          <div class="card"><h3>Поручения: кто, что и к какому сроку</h3><dl><dt>LLM</dt><dd>извлекает поручения, владельцев и сроки, замечает просрочки</dd><dt>Tools</dt><dd>протоколы совещаний, почта, календарь</dd><dt>Loop</dt><dd>каждый день; просрочки — в утренний бриф</dd><dt>Контур</dt><dd>внутренние документы — свой контур или private cloud</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="3">Ступень 3</button><button class="rchip" type="button" data-go="4">Ступень 4</button></div></div>
+          <div class="card"><h3>Red team на решение</h3><dl><dt>LLM</dt><dd>ищет слабые места, скрытые допущения и данные, которые опровергли бы тезис</dd><dt>Tools</dt><dd>читает меморандум или стратегию, ищет данные</dd><dt>Loop</dt><dd>аргумент → контраргумент → что проверить</dd><dt>Контур</dt><dd>зависит от документа; с инсайдом — только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="6">Ступень 6</button></div></div>
+        </div>
+      </div>
+      <div class="level">
+        <div class="lv-head"><span class="pn">2</span><h3>Функции управляющей компании</h3></div>
+        <div class="tgrid">
+          <div class="card"><h3>Юристы: договор против правил группы</h3><dl><dt>LLM</dt><dd>сравнивает договор с типовыми условиями и отмечает отступления</dd><dt>Tools</dt><dd>читает договор и внутренние правила — плейбук</dd><dt>Loop</dt><dd>пункт за пунктом; спорное — юристу</dd><dt>Контур</dt><dd>коммерческая тайна — только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="5">Ступень 5</button><button class="rchip" type="button" data-go="6">Ступень 6</button></div></div>
+          <div class="card"><h3>IR: вопросы инвесторов и аналитиков</h3><dl><dt>LLM</dt><dd>находит вопросы и готовит черновики ответов по раскрытой информации</dd><dt>Tools</dt><dd>почта IR, публичная отчётность, пресс-релизы</dd><dt>Loop</dt><dd>по мере поступления; отправляет человек</dd><dt>Контур</dt><dd>раскрытое — облако подходит; до публикации — инсайд, только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="3">Ступень 3</button><button class="rchip" type="button" data-go="4">Ступень 4</button></div></div>
+          <div class="card"><h3>Закупки: сравнение предложений</h3><dl><dt>LLM</dt><dd>сводит предложения в одну таблицу, отмечает отличия и риски</dd><dt>Tools</dt><dd>папка с предложениями, открытые данные о поставщиках</dd><dt>Loop</dt><dd>поставщик за поставщиком</dd><dt>Контур</dt><dd>условия контрагентов — только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="2">Ступень 2</button><button class="rchip" type="button" data-go="5">Ступень 5</button></div></div>
+          <div class="card"><h3>HR: вопросы сотрудников по политикам</h3><dl><dt>LLM</dt><dd>отвечает по внутренним политикам со ссылкой на пункт</dd><dt>Tools</dt><dd>база политик и регламентов</dd><dt>Loop</dt><dd>вопрос за вопросом; нетипичное — HR-специалисту</dd><dt>Контур</dt><dd>персональные данные — только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="5">Ступень 5</button></div></div>
+        </div>
+      </div>
+      <div class="level">
+        <div class="lv-head"><span class="pn">3</span><h3>Портфельные компании</h3></div>
+        <div class="tgrid">
+          <div class="card"><h3>Материалы к совету директоров</h3><dl><dt>LLM</dt><dd>сверяет с прошлым периодом и бюджетом, находит, где цифры не бьются и что менеджмент не объяснил, готовит пять вопросов</dd><dt>Tools</dt><dd>читает материалы на 150–300 страниц и прошлые протоколы</dd><dt>Loop</dt><dd>раздел за разделом, компания за компанией</dd><dt>Контур</dt><dd>непубличная отчётность, а у публичных компаний — инсайд: только свой контур</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="1">Ступень 1</button><button class="rchip" type="button" data-go="5">Ступень 5</button><button class="rchip" type="button" data-go="6">Ступень 6</button></div></div>
+          <div class="card"><h3>Мониторинг: рынок, ставка, регуляторика, портфель</h3><dl><dt>LLM</dt><dd>отбирает то, что меняет картину для группы</dd><dt>Tools</dt><dd>поиск, сайты регуляторов и компаний, деловые СМИ</dd><dt>Loop</dt><dd>по расписанию: раз в день или в неделю</dd><dt>Контур</dt><dd>публичные данные — облачная модель подходит</dd></dl><div class="rchips"><button class="rchip" type="button" data-go="2">Ступень 2</button><button class="rchip" type="button" data-go="4">Ступень 4</button></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1344,6 +1463,7 @@ footer a{color:#dfe6ff}
           <li><b>Владелец ИИ-повестки.</b> Кто в группе отвечает за тему и с какого момента спрашивает с команд по четырём вопросам.</li>
         </ol>
       </div>
+      <div class="callout key next"><b>Что дальше</b><p>В октябре MWS AI Corporate Cowork появится для АФК «Система», и на нём будут следующее демо и урок.</p></div>
     </div>
   </div>
 </section>
@@ -1744,6 +1864,7 @@ var PROMPTS = {
     + "Цикл: если НА ДОРАБОТКУ — автор правит черновик по ревью (новая версия «02_черновик_2.md»), критик проверяет заново («03_ревью_2.md»). Не больше 3 кругов. Если после 3 кругов текст не принят — остановись и покажи мне спорные пункты.\n\n"
     + "В конце: файл «04_итог.md» и короткий отчёт в чате — сколько было кругов, что нашёл критик, что исправлено.\nНичего не публикуй и никуда не отправляй: финальное решение за мной.";
   },
+  policy: function(){ return (typeof MX !== "undefined" && MX && MXS) ? policyText() : ""; },
   promptBad: function(){ return "Проанализируй отчёт «Эталона»."; },
   promptGood: function(){
     return "Ты — аналитик инвестиционного комитета. Проанализируй квартальный отчёт группы «Эталон» (файл приложен) для руководителя группы.\n\n"
@@ -1972,6 +2093,52 @@ document.addEventListener("click", function(e){
     navigator.clipboard.writeText(text).then(function(){ b.textContent = "Скопировано"; setTimeout(function(){ b.textContent = "Скопировать"; }, 1600); }, fallback);
   } else { fallback(); }
 });
+
+/* ---------- autonomy matrix ---------- */
+var MX = [
+  {k:"Читать и искать", ex:"документы, почта, открытые источники", d:"self"},
+  {k:"Анализировать и готовить черновики", ex:"записки, сравнения, таблицы в рабочей папке", d:"self"},
+  {k:"Создавать черновики в системах", ex:"письма в «Черновиках», задачи, встречи", d:"ask"},
+  {k:"Менять данные в учётных системах", ex:"CRM, ERP, кадровые и финансовые системы", d:"ask"},
+  {k:"Удалять и архивировать", ex:"письма, файлы, записи", d:"never"},
+  {k:"Отправлять во внешний мир", ex:"письма контрагентам, ответы инвесторам и СМИ, публикации", d:"never", lock:true},
+  {k:"Платежи и финансовые операции", ex:"переводы, заявки на оплату", d:"never", lock:true},
+  {k:"Подписывать от имени компании", ex:"ЭЦП, договоры, визы согласования", d:"never", lock:true},
+  {k:"Расширять свои права", ex:"новые доступы и коннекторы", d:"never"}
+];
+var MXD = MX.map(function(r){ return r.d; });
+var MXS = store.get("ma1.matrix", null);
+if (!Array.isArray(MXS) || MXS.length !== MX.length) MXS = MXD.slice();
+MX.forEach(function(r, i){ if (r.lock) MXS[i] = "never"; });
+var MXC = [{k:"self", cls:"ok", sym:"✓", t:"агент сам"}, {k:"ask", cls:"warn", sym:"?", t:"с утверждением"}, {k:"never", cls:"stop", sym:"✕", t:"никогда"}];
+function policyText(){
+  var g = {self:[], ask:[], never:[]};
+  MX.forEach(function(r, i){ g[MXS[i]].push("— " + r.k + " (" + r.ex + ")"); });
+  return "Политика автономии ИИ-агентов группы\n\n"
+    + "Агент выполняет сам:\n" + (g.self.join("\n") || "— нет") + "\n\n"
+    + "Только после утверждения человеком:\n" + (g.ask.join("\n") || "— нет") + "\n\n"
+    + "Запрещено всегда:\n" + (g.never.join("\n") || "— нет") + "\n\n"
+    + "Правила:\n1. Колонку выбирают по цене ошибки.\n2. Решение закрепляется правами доступа, а не инструкцией агенту.\n3. Класс действий переводится в «агент сам» только после двух недель, когда девять из десяти результатов приняты без правок.\n4. Матрицу пересматривают раз в квартал.";
+}
+var mxBody = $("#mx-body");
+function renderMx(focusRow, focusCol){
+  mxBody.innerHTML = MX.map(function(r, i){
+    return "<tr><td class=\"k\">" + esc(r.k) + (r.lock ? "<small>закреплено</small>" : "") + "</td><td class=\"ex\">" + esc(r.ex) + "</td>"
+      + MXC.map(function(c){
+          var on = MXS[i] === c.k, dis = !!r.lock && !on;
+          return "<td class=\"c\" data-label=\"" + c.t + "\"><button type=\"button\" class=\"mxb " + c.cls + "\" data-row=\"" + i + "\" data-col=\"" + c.k + "\" aria-pressed=\"" + (on ? "true" : "false") + "\"" + (dis ? " disabled" : "") + " aria-label=\"" + esc(r.k + " — " + c.t) + "\">" + (on ? c.sym : "") + "</button></td>";
+        }).join("") + "</tr>";
+  }).join("");
+  if (focusRow != null) { var fb = $(".mxb[data-row=\"" + focusRow + "\"][data-col=\"" + focusCol + "\"]", mxBody); if (fb) fb.focus(); }
+}
+mxBody.addEventListener("click", function(e){
+  var b = e.target.closest(".mxb"); if (!b || b.disabled) return;
+  var i = parseInt(b.getAttribute("data-row"), 10), c = b.getAttribute("data-col");
+  if (MXS[i] === c) return;
+  MXS[i] = c; store.set("ma1.matrix", MXS); renderMx(i, c); renderPrompts();
+});
+$("#mx-reset").addEventListener("click", function(){ MXS = MXD.slice(); store.set("ma1.matrix", MXS); renderMx(); renderPrompts(); toast("Рекомендация возвращена"); });
+renderMx(); renderPrompts();
 
 /* ---------- hero canvas: network + crystal ---------- */
 (function(){
