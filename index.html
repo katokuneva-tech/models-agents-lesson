@@ -451,9 +451,6 @@ table.cmp td:last-child{color:var(--ink)}
 .rwhy{display:grid;gap:6px;font-size:15px;color:var(--ink-2)}
 .rwhy b{color:var(--ink)}
 @media (max-width:620px){.rout{grid-template-columns:minmax(0,1fr)}}
-.calc{white-space:nowrap}
-.calc input{width:4.4em;font:inherit;color:var(--ink);background:var(--surface-2);border:1px solid var(--line-strong);border-radius:2px;padding:1px 6px}
-.calc b{color:var(--ink);font-variant-numeric:tabular-nums}
 
 /* final */
 .final{margin-top:48px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
@@ -994,39 +991,9 @@ footer a{color:#dfe6ff}
     <div class="sec-head">
       <p class="eyebrow">Что может пойти не так</p>
       <h2>Подводные камни</h2>
-      <p>Три классических риска — и главный вопрос для группы: какие данные в какой контур можно отдавать.</p>
+      <p>Риск не в том, что вы пользуетесь ИИ, а в том, что вы в него загружаете. Главный вопрос для группы — какие данные в какой контур можно отдавать.</p>
     </div>
     <div class="pits">
-      <div class="card">
-        <h3>Дорого</h3>
-        <ul>
-          <li>350 000 кредитов на тесты в Manus — около $1 400 за три недели</li>
-          <li>OpenClaw работает по API Anthropic и легко съедает $50 в день</li>
-          <li>Claude Cowork лучше всего работает на тарифе Max ($90 в месяц)</li>
-          <li>По данным Anthropic, агент тратит примерно в 4 раза больше токенов, чем чат, а система из нескольких агентов — примерно в 15 раз. Ступень 6 — самая дорогая: ставьте лимит кругов</li>
-          <li>Своя модель — не бесплатно: вместо оплаты токенов — железо, электричество и люди. Флагман Qwen3.8-Max требует кластера ускорителей, версия 27B помещается на ноутбук</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Непредсказуемо</h3>
-        <ul>
-          <li>Сработало один раз — не факт, что сработает в следующий: LLM недетерминирована</li>
-          <li>Для повторяющихся задач это проблема: если еженедельный отчёт каждый раз выглядит по-разному, его невозможно сравнивать неделя к неделе</li>
-          <li>Ошибки копятся по цепочке: <span class="calc">надёжность шага <input id="rel-p" type="number" min="50" max="99.9" step="0.5" value="95" inputmode="decimal" aria-label="Надёжность одного шага, %">%</span> <span class="calc">× шагов <input id="rel-n" type="number" min="1" max="200" value="20" inputmode="numeric" aria-label="Число шагов в цепочке"></span> <span class="calc">= <b id="rel-out">36%</b></span> на всю цепочку. Поэтому — короткие петли, чекпоинты и критик</li>
-          <li><b>Как сделать результат предсказуемым → Skills (ступень 5)</b></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Небезопасно</h3>
-        <ul>
-          <li>Агент с доступом к почте читает чужие тексты — в письме может прятаться инструкция для агента (prompt injection)</li>
-          <li>Чем больше прав и длиннее петля, тем дороже ошибка</li>
-          <li>Защита — не промпт, а права: Blocked на необратимые действия, отдельная папка, тестовый ящик</li>
-          <li>Рабочая почта и данные компании — только если это разрешено политикой ИБ</li>
-          <li><b>Смертельная троица</b> (термин Саймона Уиллисона): доступ к конфиденциальным данным + чтение чужого контента + канал наружу. Любые два — можно, все три у одного агента без человека — готовый канал утечки</li>
-          <li>Память тоже можно отравить: подброшенная инструкция, попавшая в память, сработает и завтра</li>
-        </ul>
-      </div>
       <div class="card data" id="data">
         <h3>Данные: что в какой контур</h3>
         <p class="muted">Модель выбирают по данным. Выберите, что хотите отдать ИИ, — увидите, куда это можно.</p>
@@ -1991,16 +1958,6 @@ function setData(i, focus){
   $("#rwhy").innerHTML = "<p><b>Почему.</b> " + esc(d.why) + "</p><p><b>Пример в группе:</b> " + esc(d.ex) + ".</p>";
 }
 setData(4, false);
-
-/* ---------- error accumulation ---------- */
-var relP = $("#rel-p"), relN = $("#rel-n"), relOut = $("#rel-out");
-function calcRel(){
-  var p = Math.min(99.9, Math.max(1, parseFloat(String(relP.value).replace(",", ".")) || 95)) / 100;
-  var n = Math.min(200, Math.max(1, parseInt(relN.value, 10) || 1));
-  var v = Math.pow(p, n) * 100;
-  relOut.textContent = (v < 1 ? v.toFixed(1).replace(".", ",") : String(Math.round(v))) + "%";
-}
-relP.addEventListener("input", calcRel); relN.addEventListener("input", calcRel); calcRel();
 
 /* ---------- contact: copy phone ---------- */
 document.addEventListener("click", function(e){
